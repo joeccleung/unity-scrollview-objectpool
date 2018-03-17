@@ -144,8 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScrollRect: {fileID: 114623274381187898}
+  viewPortT: {fileID: 224439857639303850}
   DragDetectionT: {fileID: 224799292906260038}
   ContentT: {fileID: 224988606827892374}
+  ItemHeight: 100
   BufferSize: 3
   ItemPool: {fileID: 114553555922100828}
 --- !u!114 &114233352977959778
