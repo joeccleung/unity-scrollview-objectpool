@@ -6,24 +6,49 @@ using UnityEngine.EventSystems;
 
 public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    #region Child Components
+
     [SerializeField] ScrollRect ScrollRect;
     [SerializeField] RectTransform viewPortT;
     [SerializeField] RectTransform DragDetectionT;
     [SerializeField] RectTransform ContentT;
-    [SerializeField] float ItemHeight = 1;      // TODO: Replace it with dynamic height
-    [SerializeField] int BufferSize;
     [SerializeField] ListViewItemPool ItemPool;
 
+    #endregion
+
+
+
+    #region Layout Parameters
+
+    [SerializeField] float ItemHeight = 1;      // TODO: Replace it with dynamic height
+    [SerializeField] int BufferSize;
+
+    #endregion
+
+
+
+    #region Layout Variables
+
     int TargetVisibleItemCount { get { return Mathf.Max(Mathf.CeilToInt(viewPortT.rect.height / ItemHeight), 0); } }
-    int TopItemOutOfView { get { return Mathf.CeilToInt(ContentT.anchoredPosition.y / ItemHeight); }}
+    int TopItemOutOfView { get { return Mathf.CeilToInt(ContentT.anchoredPosition.y / ItemHeight); } }
 
     float dragDetectionAnchorPreviousY = 0;
 
-    int[] data;
+    #endregion
+
+
+
+    #region Data
+
+    ListViewItemModel[] data;
     int dataHead = 0;
     int dataTail = 0;
 
-    public void Setup(int[] data)
+    #endregion
+
+
+
+    public void Setup(ListViewItemModel[] data)
     {
         ScrollRect.onValueChanged.AddListener(OnDragDetectionPositionChange);
 
@@ -44,7 +69,7 @@ public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
 
 
-
+    #region UI Event Handling
 
     public void OnDragDetectionPositionChange(Vector2 dragNormalizePos)
     {
@@ -65,13 +90,19 @@ public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void OnDrag(PointerEventData eventData)
     {
-        
+
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+
     }
+
+    #endregion
+
+
+
+    #region Infinite Scroll Mechanism
 
     void UpdateContentBuffer()
     {
@@ -104,6 +135,7 @@ public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             ContentT.anchoredPosition = new Vector2(ContentT.anchoredPosition.x, ContentT.anchoredPosition.y + lastChildT.gameObject.GetComponent<ListViewItem>().ItemHeight);
 
         }
-
     }
+
+    #endregion
 }

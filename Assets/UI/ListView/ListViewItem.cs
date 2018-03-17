@@ -12,9 +12,9 @@ public class ListViewItem : MonoBehaviour
 
     public int ItemHeight { get { return 100; }}
 
-    public void Setup(int i)
+    public void Setup(ListViewItemModel model)
     {
-        gameObject.name = i.ToString();
-        itemText.text = i.ToString();
+        gameObject.name = ((int)(model.Data)).ToString();
+        itemText.text = ((int)(model.Data)).ToString();
     }
 }

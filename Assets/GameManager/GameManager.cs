@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        int[] demoData = new int[DataCount];
+        ListViewItemModel[] demoData = new ListViewItemModel[DataCount];
         for(int i = 0; i < DataCount; i++)
         {
-            demoData[i] = i + 1;
+            demoData[i] = new ListViewItemModel(i + 1);
         }
 
         listView.Setup(demoData);
