@@ -259,7 +259,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1008465269
+--- !u!114 &1123930388 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114092207522656296, guid: 47ab8c2b54fac4c6a8377c87fcb81018,
+    type: 2}
+  m_PrefabInternal: {fileID: 1794580952}
+  m_Script: {fileID: 11500000, guid: 36c51c6ac611142f6afdb9c02e367f0a, type: 3}
+--- !u!1001 &1794580952
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -359,12 +365,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 47ab8c2b54fac4c6a8377c87fcb81018, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1123930388 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114092207522656296, guid: 47ab8c2b54fac4c6a8377c87fcb81018,
-    type: 2}
-  m_PrefabInternal: {fileID: 1008465269}
-  m_Script: {fileID: 11500000, guid: 36c51c6ac611142f6afdb9c02e367f0a, type: 3}
 --- !u!1001 &1959093864
 Prefab:
   m_ObjectHideFlags: 0
