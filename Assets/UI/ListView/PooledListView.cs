@@ -13,7 +13,7 @@ public class PooledListView : MonoBehaviour
     [SerializeField] int BufferSize;
     [SerializeField] ListViewItemPool ItemPool;
 
-    public int TargetVisibleItemCount { get { return Mathf.CeilToInt(viewPortT.sizeDelta.y / ItemHeight); } }
+    public int TargetVisibleItemCount { get { return Mathf.CeilToInt(viewPortT.rect.height / ItemHeight); } }
 
     int[] data;
     int dataHead = 0;
@@ -21,6 +21,8 @@ public class PooledListView : MonoBehaviour
 
     public void Setup(int[] data)
     {
+        ScrollRect.onValueChanged.AddListener(OnDragDetectionPositionChange);
+
         this.data = data;
 
         DragDetectionT.sizeDelta = new Vector2(DragDetectionT.sizeDelta.x, this.data.Length * ItemHeight);
@@ -34,5 +36,11 @@ public class PooledListView : MonoBehaviour
             itemGO.GetComponent<ListViewItem>().Setup(data[dataTail]);
             dataTail++;
         }
+    }
+
+
+    public void OnDragDetectionPositionChange(Vector2 eventData)
+    {
+        
     }
 }
