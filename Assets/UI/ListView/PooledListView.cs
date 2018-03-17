@@ -14,7 +14,8 @@ public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     [SerializeField] int BufferSize;
     [SerializeField] ListViewItemPool ItemPool;
 
-    public int TargetVisibleItemCount { get { return Mathf.CeilToInt(viewPortT.rect.height / ItemHeight); } }
+    int TargetVisibleItemCount { get { return Mathf.Max(Mathf.CeilToInt(viewPortT.rect.height / ItemHeight), 0); } }
+    int TopItemOutOfView { get { return Mathf.CeilToInt(ContentT.anchoredPosition.y / ItemHeight); }}
 
     float dragDetectionAnchorPreviousY = 0;
 
@@ -51,6 +52,8 @@ public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
         ContentT.anchoredPosition = new Vector2(ContentT.anchoredPosition.x, ContentT.anchoredPosition.y + dragDelta);
 
+        UpdateContentBuffer();
+
         dragDetectionAnchorPreviousY = DragDetectionT.anchoredPosition.y;
     }
 
@@ -68,5 +71,39 @@ public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     public void OnEndDrag(PointerEventData eventData)
     {
         
+    }
+
+    void UpdateContentBuffer()
+    {
+        if(TopItemOutOfView > BufferSize)
+        {
+            if(dataTail >= data.Length)
+            {
+                return;
+            }
+
+            Transform firstChildT = ContentT.GetChild(0);
+            firstChildT.SetSiblingIndex(ContentT.childCount - 1);
+            firstChildT.gameObject.GetComponent<ListViewItem>().Setup(data[dataTail]);
+            ContentT.anchoredPosition = new Vector2(ContentT.anchoredPosition.x, ContentT.anchoredPosition.y - firstChildT.gameObject.GetComponent<ListViewItem>().ItemHeight);
+            dataHead++;
+            dataTail++;
+        }
+        else if(TopItemOutOfView < BufferSize)
+        {
+            if(dataHead <= 0)
+            {
+                return;
+            }
+
+            Transform lastChildT = ContentT.GetChild(ContentT.childCount - 1);
+            lastChildT.SetSiblingIndex(0);
+            dataHead--;
+            dataTail--;
+            lastChildT.gameObject.GetComponent<ListViewItem>().Setup(data[dataHead]);
+            ContentT.anchoredPosition = new Vector2(ContentT.anchoredPosition.x, ContentT.anchoredPosition.y + lastChildT.gameObject.GetComponent<ListViewItem>().ItemHeight);
+
+        }
+
     }
 }
