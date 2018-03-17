@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class PooledListView : MonoBehaviour
+public class PooledListView : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [SerializeField] ScrollRect ScrollRect;
     [SerializeField] RectTransform viewPortT;
@@ -14,6 +15,8 @@ public class PooledListView : MonoBehaviour
     [SerializeField] ListViewItemPool ItemPool;
 
     public int TargetVisibleItemCount { get { return Mathf.CeilToInt(viewPortT.rect.height / ItemHeight); } }
+
+    float dragDetectionAnchorPreviousY = 0;
 
     int[] data;
     int dataHead = 0;
@@ -39,7 +42,30 @@ public class PooledListView : MonoBehaviour
     }
 
 
-    public void OnDragDetectionPositionChange(Vector2 eventData)
+
+
+
+    public void OnDragDetectionPositionChange(Vector2 dragNormalizePos)
+    {
+        float dragDelta = DragDetectionT.anchoredPosition.y - dragDetectionAnchorPreviousY;
+
+        ContentT.anchoredPosition = new Vector2(ContentT.anchoredPosition.x, ContentT.anchoredPosition.y + dragDelta);
+
+        dragDetectionAnchorPreviousY = DragDetectionT.anchoredPosition.y;
+    }
+
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        dragDetectionAnchorPreviousY = DragDetectionT.anchoredPosition.y;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
     {
         
     }
