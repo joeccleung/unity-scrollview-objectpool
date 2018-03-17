@@ -5,13 +5,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
-public class ListViewItem : MonoBehaviour {
+public class ListViewItem : MonoBehaviour
+{
 
-   [SerializeField] Text itemText;
+    [SerializeField] Text itemText;
 
-   public void Setup(int i)
-   {
-      gameObject.name = i.ToString();
-      itemText.text = i.ToString();
-   }
+    public int ItemHeight { get { return 100; }}
+
+    public void Setup(int i)
+    {
+        gameObject.name = i.ToString();
+        itemText.text = i.ToString();
+    }
 }
