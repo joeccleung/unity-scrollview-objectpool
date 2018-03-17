@@ -52,4 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listView: {fileID: 0}
-  DataCount: 100
+  DataCount: 50
