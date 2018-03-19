@@ -1,6 +1,8 @@
 ﻿/*
  * Scroll View with Object Pool based on Unity UI Framework
  * Copyright (C) 2018 Joe Leung
+ * 
+ * Public Repository of this program: <https://github.com/joeccleung/unity-scrollview-objectpool.git>
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by the Free
@@ -15,6 +17,7 @@
  * You should have received a copy of the GNU Lesser General Public License along with
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 using System;
 using System.Collections;
