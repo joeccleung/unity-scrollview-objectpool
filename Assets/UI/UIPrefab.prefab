@@ -129,9 +129,9 @@ MonoBehaviour:
   viewPortT: {fileID: 224439857639303850}
   DragDetectionT: {fileID: 224799292906260038}
   ContentT: {fileID: 224988606827892374}
+  ItemPool: {fileID: 114553555922100828}
   ItemHeight: 100
   BufferSize: 3
-  ItemPool: {fileID: 114553555922100828}
 --- !u!114 &114289030314551558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Content: {fileID: 224799292906260038}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 2
+  m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135

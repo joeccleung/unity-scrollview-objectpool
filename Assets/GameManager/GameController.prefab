@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4243342613595576}
   - component: {fileID: 114842499501846416}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1267552337027456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de5ed9263b91450db68a95deb7b3b28, type: 3}
+  m_Script: {fileID: 11500000, guid: bca0cc44a11bf4c9994f415bab2cd3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   listView: {fileID: 0}
